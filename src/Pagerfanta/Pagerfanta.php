@@ -34,17 +34,28 @@ class Pagerfanta implements \Countable, \IteratorAggregate, PagerfantaInterface
     private $currentPage;
     private $nbResults;
     private $currentPageResults;
+    private $rel;
 
     /**
      * @param AdapterInterface $adapter An adapter.
      */
-    public function __construct(AdapterInterface $adapter)
+    public function __construct(AdapterInterface $adapter, $rel)
     {
         $this->adapter = $adapter;
         $this->allowOutOfRangePages = false;
         $this->normalizeOutOfRangePages = false;
         $this->maxPerPage = 10;
         $this->currentPage = 1;
+        $this->rel = $rel;
+    }
+
+    /**
+     * Get relation type
+     * @return string
+     */
+    public function getRel()
+    {
+        return $this->rel;
     }
 
     /**
